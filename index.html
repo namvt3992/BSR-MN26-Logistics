@@ -54,8 +54,6 @@ p{color:var(--ink2)}
 .nav.scrolled{box-shadow:var(--sh1)}
 .nav .in{max-width:1180px;margin:0 auto;height:100%;padding:0 24px;display:flex;align-items:center;gap:22px}
 .logo{display:flex;align-items:center;gap:11px;flex:none}
-.logo .mark{width:38px;height:38px;border-radius:11px;background:var(--grad);display:grid;place-items:center;box-shadow:var(--sh2)}
-.logo .mark svg{width:21px;height:21px}
 .logo .txt b{font-family:var(--d);font-weight:800;font-size:15px;display:block;line-height:1}
 .logo .txt span{font-size:10.5px;color:var(--muted);font-weight:500;letter-spacing:.02em}
 .nlinks{display:flex;gap:3px;margin-left:auto}
@@ -238,9 +236,22 @@ details .bd{padding:0 18px 17px;font-size:14px;color:var(--ink2)}
 .toTop:hover{transform:translateY(-3px)}
 mark{background:#fde9a8;color:var(--ink);border-radius:3px;padding:0 2px}
 
+/* ===== BỔ SUNG GIAO DIỆN MỚI ===== */
+/* CSS cho Logo mới */
+.logo img { height: 38px; width: auto; object-fit: contain; }
+
+/* CSS cho nút Thu gọn / Mở rộng */
+.sec-toggle { font-family: var(--d); font-size: 13px; font-weight: 700; background: var(--bg2); color: var(--green-d); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; cursor: pointer; transition: 0.2s; margin-left: auto; display: inline-flex; align-items: center; gap: 5px; box-shadow: var(--sh1); }
+.sec-toggle:hover { background: var(--line); transform: translateY(-1px); }
+
+/* CSS cho phần Chưng cất dầu */
+.distill-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 24px; align-items: stretch; margin-top: 16px; }
+.distill-img { border-radius: 14px; box-shadow: var(--sh1); border: 1px solid var(--line); overflow: hidden; background: #fff; padding: 10px; }
+.distill-img img { width: 100%; border-radius: 8px; height: 100%; object-fit: cover; }
+
 @media(max-width:860px){
   .nlinks{display:none}.burger{display:flex}
-  .grid2,.grid3,.gloss,.reslist{grid-template-columns:1fr}
+  .grid2,.grid3,.gloss,.reslist, .distill-grid {grid-template-columns:1fr}
   .npill .lab{display:none}
   .wrap{padding:0 18px}
 }
@@ -258,7 +269,7 @@ mark{background:#fde9a8;color:var(--ink);border-radius:3px;padding:0 2px}
 <header class="nav" id="nav">
   <div class="in">
     <a href="#home" class="logo">
-      <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2C9 6 6 9 6 14a6 6 0 0012 0c0-5-3-8-6-12z" fill="#fff"/><path d="M12 8c-1.6 2.2-3 3.8-3 6.4a3 3 0 006 0c0-2.6-1.4-4.2-3-6.4z" fill="#0E9F4F"/></svg></span>
+      <img src="logo-bsr.png" alt="BSR Logo">
       <span class="txt"><b>BSR · Ôn MN26</b><span>Cẩm nang phỏng vấn Logistics</span></span>
     </a>
     <nav class="nlinks" id="nlinks"></nav>
@@ -362,8 +373,7 @@ mark{background:#fde9a8;color:var(--ink);border-radius:3px;padding:0 2px}
 
 <!-- ============ 01 JD ============ -->
 <section id="jd" data-track class="sec-pad"><div class="wrap">
-  <div class="eyebrow reveal"><span class="dot"></span>01 — Giải mã JD &amp; chiến lược ôn</div>
-  <h2 class="title reveal">Họ thật sự kiểm tra điều gì?</h2>
+  <h2 class="title reveal">01 — Họ thật sự kiểm tra điều gì từ JD?</h2>
   <p class="lead reveal">JD gộp hai mã: <strong>MN25</strong> (KD dầu thô nhập khẩu / nguyên liệu) và <strong>MN26</strong> (Logistics). Bạn ứng tuyển MN26 — yêu cầu bằng <em>Kỹ sư Hàng hải/Vận tải hoặc Cử nhân Logistics</em>. Đây là lợi thế: nền Logistics &amp; Supply Chain + Thuật toán (HCMUT), cộng kinh nghiệm EPC dầu khí tại PTSC M&amp;C.</p>
 
   <div class="card lift reveal gap">
@@ -395,8 +405,7 @@ mark{background:#fde9a8;color:var(--ink);border-radius:3px;padding:0 2px}
 
 <!-- ============ 02 BSR ============ -->
 <section id="bsr" data-track class="sec-pad"><div class="wrap">
-  <div class="eyebrow reveal"><span class="dot"></span>02 — Hồ sơ doanh nghiệp</div>
-  <h2 class="title reveal">Biết BSR như người trong nhà.</h2>
+  <h2 class="title reveal">02 — Biết BSR như người trong nhà.</h2>
   <p class="lead reveal">Phần này gần như chắc chắn được hỏi. Mục tiêu: nói trôi chảy về công ty, nhà máy, sản phẩm, tài chính, chiến lược — kèm con số.</p>
 
   <h3 class="reveal">Lý lịch &amp; sở hữu</h3>
@@ -461,12 +470,47 @@ mark{background:#fde9a8;color:var(--ink);border-radius:3px;padding:0 2px}
       <a class="reslink" href="https://tapchicongthuong.vn/loc-hoa-dau-binh-son--bsr-muc-tieu-top-8-nha-may-loc-dau-co-doanh-thu-lon-nhat-khu-vuc-510036.htm" target="_blank" rel="noopener"><span class="ic">C</span><div><div class="tt">ĐHĐCĐ 2026 — mục tiêu Top 8<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div><div class="ds">Chiến lược M&amp;A, SPM, đổi tên</div></div></a>
     </div>
   </div>
+
+  <h3 class="reveal" style="margin-top: 40px;">Kiến thức Cốt lõi: Tháp chưng cất khí quyển (CDU)</h3>
+  <p class="reveal">Trong phỏng vấn Logistics, việc hiểu sản phẩm đầu ra ở từng dải nhiệt độ chứng tỏ bạn hiểu chuỗi cung ứng vật lý của nhà máy. Tại BSR, tháp CDU (Crude Distillation Unit) là "trái tim" chia tách dầu thô thành các phân đoạn:</p>
+  
+  <div class="distill-grid reveal">
+    <div class="distill-img">
+      <img src="chung-cat-dau.jpg" alt="Sơ đồ chưng cất phân đoạn dầu thô">
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div class="card lift" style="padding: 16px;">
+        <span class="pill b">&lt; 40°C · LPG</span>
+        <p style="font-size: 13.5px; margin: 6px 0 0;">Khí dầu mỏ hóa lỏng. Dùng làm khí đốt dân dụng và công nghiệp.</p>
+      </div>
+      <div class="card lift" style="padding: 16px;">
+        <span class="pill t">70–100°C · Naphtha</span>
+        <p style="font-size: 13.5px; margin: 6px 0 0;"><strong>Quan trọng với BSR:</strong> Đây là nguyên liệu đầu vào cho phân xưởng hóa dầu để sản xuất hạt nhựa Polypropylene (PP) giá trị cao.</p>
+      </div>
+      <div class="card lift" style="padding: 16px;">
+        <span class="pill g">40–150°C · Xăng (Petrol)</span>
+        <p style="font-size: 13.5px; margin: 6px 0 0;">Nhiên liệu ô tô. Tại BSR sẽ được phối trộn thành xăng RON 92, RON 95 và E5.</p>
+      </div>
+      <div class="card lift" style="padding: 16px;">
+        <span class="pill o">150–250°C · Dầu hỏa (Kerosene)</span>
+        <p style="font-size: 13.5px; margin: 6px 0 0;">Sản xuất nhiên liệu hàng không (Jet A1, Jet A1K). BSR là đơn vị chủ lực cung cấp Jet A1 cho thị trường VN.</p>
+      </div>
+      <div class="card lift" style="padding: 16px;">
+        <span class="pill" style="background:#ffe0b2;color:#e65100">250–350°C · Diesel (DO)</span>
+        <p style="font-size: 13.5px; margin: 6px 0 0;">Dùng cho xe tải, xe buýt, máy công nghiệp. Đây là mặt hàng có sản lượng xuất bán đường biển/đường bộ rất lớn.</p>
+      </div>
+      <div class="card lift" style="padding: 16px;">
+        <span class="pill" style="background:#ffcdd2;color:#c62828">330–450°C+ · Dầu nặng (FO) & Cặn dầu</span>
+        <p style="font-size: 13.5px; margin: 6px 0 0;">Dùng làm nhiên liệu đốt cho tàu biển (liên quan trực tiếp cước Logistics) hoặc sản xuất nhựa đường.</p>
+      </div>
+    </div>
+  </div>
+
 </div></section>
 
 <!-- ============ 03 ROLE ============ -->
 <section id="role" data-track class="sec-pad"><div class="wrap">
-  <div class="eyebrow reveal"><span class="dot"></span>03 — Vai trò Logistics trong nhà máy lọc dầu</div>
-  <h2 class="title reveal">Chuyên viên Logistics ở BSR làm gì?</h2>
+  <h2 class="title reveal">03 — Chuyên viên Logistics ở BSR làm gì?</h2>
   <p class="lead reveal">Hiểu công việc thật giúp trả lời "vì sao em hợp vị trí này" cực thuyết phục. Logistics xoay quanh hai dòng chảy: <em>dầu thô vào</em> và <em>sản phẩm ra</em>.</p>
 
   <div class="grid2 reveal gap">
@@ -513,8 +557,7 @@ mark{background:#fde9a8;color:var(--ink);border-radius:3px;padding:0 2px}
 
 <!-- ============ 04 CHARTER ============ -->
 <section id="charter" data-track class="sec-pad"><div class="wrap">
-  <div class="eyebrow reveal"><span class="dot"></span>04 — Thuê tàu &amp; Vận tải biển · LÕI MN26</div>
-  <h2 class="title reveal">Chartering: trái tim của vị trí.</h2>
+  <h2 class="title reveal">04 — Thuê tàu &amp; Vận tải biển (LÕI MN26)</h2>
   <p class="lead reveal">JD nêu thẳng: "thuê tàu, đàm phán hợp đồng thuê tàu, các loại tàu, charter party, thời gian làm hàng, phí lưu tàu". Phải <em>thuộc và nói tự nhiên cả Anh – Việt</em>.</p>
 
   <h3 class="reveal">1) Các loại &amp; cỡ tàu chở dầu</h3>
@@ -579,8 +622,7 @@ mark{background:#fde9a8;color:var(--ink);border-radius:3px;padding:0 2px}
 
 <!-- ============ 05 MARITIME ============ -->
 <section id="maritime" data-track class="sec-pad"><div class="wrap">
-  <div class="eyebrow reveal"><span class="dot"></span>05 — Quy định hàng hải · QT &amp; trong nước</div>
-  <h2 class="title reveal">Luật chơi trên biển.</h2>
+  <h2 class="title reveal">05 — Quy định hàng hải (QT &amp; trong nước)</h2>
   <p class="lead reveal">JD yêu cầu "quy định hàng hải quốc tế, trong nước". Không cần thuộc từng điều — phải gọi tên đúng &amp; biết mục đích.</p>
 
   <h3 class="reveal">Quốc tế — do IMO ban hành</h3>
@@ -620,8 +662,7 @@ mark{background:#fde9a8;color:var(--ink);border-radius:3px;padding:0 2px}
 
 <!-- ============ 06 PRICING ============ -->
 <section id="pricing" data-track class="sec-pad"><div class="wrap">
-  <div class="eyebrow reveal"><span class="dot"></span>06 — Cấu trúc giá dầu &amp; thị trường</div>
-  <h2 class="title reveal">Hiểu giá = nổi bật hơn ứng viên thuần.</h2>
+  <h2 class="title reveal">06 — Cấu trúc giá dầu &amp; thị trường</h2>
   <p class="lead reveal">JD ghi "hiểu cấu trúc giá là một lợi thế" &amp; nhắc Platts/Argus. Nắm phần này là điểm cộng lớn.</p>
 
   <h3 class="reveal">1) Chuẩn giá dầu thô (benchmarks)</h3>
@@ -667,8 +708,7 @@ mark{background:#fde9a8;color:var(--ink);border-radius:3px;padding:0 2px}
 
 <!-- ============ 07 TRADE ============ -->
 <section id="trade" data-track class="sec-pad"><div class="wrap">
-  <div class="eyebrow reveal"><span class="dot"></span>07 — Thương mại quốc tế &amp; Incoterms</div>
-  <h2 class="title reveal">Đàm phán hợp đồng TMQT &amp; thủ tục.</h2>
+  <h2 class="title reveal">07 — Thương mại quốc tế &amp; Incoterms</h2>
   <p class="lead reveal">Trọng tâm: Incoterms (đặc biệt <em>FOB / CFR / CIF</em>), chứng từ, L/C, hải quan.</p>
 
   <h3 class="reveal">Incoterms 2020 — 11 điều kiện</h3>
@@ -705,8 +745,7 @@ mark{background:#fde9a8;color:var(--ink);border-radius:3px;padding:0 2px}
 
 <!-- ============ 08 GEO ============ -->
 <section id="geo" data-track class="sec-pad"><div class="wrap">
-  <div class="eyebrow reveal"><span class="dot"></span>08 — Địa chính trị &amp; an ninh năng lượng</div>
-  <h2 class="title reveal">Thế giới rung, giá dầu &amp; cước tàu rung theo.</h2>
+  <h2 class="title reveal">08 — Địa chính trị &amp; an ninh năng lượng</h2>
   <p class="lead reveal">Chỉ cần kể đúng "điểm nóng" và <em>nối</em> tới chi phí logistics &amp; nguồn cung BSR.</p>
 
   <div class="tbl reveal gap"><table>
@@ -723,8 +762,7 @@ mark{background:#fde9a8;color:var(--ink);border-radius:3px;padding:0 2px}
 
 <!-- ============ 09 TOOLS ============ -->
 <section id="tools" data-track class="sec-pad"><div class="wrap">
-  <div class="eyebrow reveal"><span class="dot"></span>09 — Công cụ &amp; kỹ năng văn phòng</div>
-  <h2 class="title reveal">Excel, SAP, Platts terminal &amp; AI.</h2>
+  <h2 class="title reveal">09 — Công cụ &amp; kỹ năng văn phòng</h2>
   <p class="lead reveal">Đây là sân nhà của bạn (dữ liệu + EPC). Nói cụ thể bạn dùng được gì, đừng chung chung.</p>
 
   <div class="grid2 reveal gap">
@@ -749,8 +787,7 @@ mark{background:#fde9a8;color:var(--ink);border-radius:3px;padding:0 2px}
 
 <!-- ============ 10 ENGLISH ============ -->
 <section id="english" data-track class="sec-pad"><div class="wrap">
-  <div class="eyebrow reveal"><span class="dot"></span>10 — Tiếng Anh chuyên ngành (IELTS 5.0+)</div>
-  <h2 class="title reveal">Đọc hợp đồng, nói với đối tác.</h2>
+  <h2 class="title reveal">10 — Tiếng Anh chuyên ngành</h2>
   <p class="lead reveal">Quan trọng hơn điểm số là <em>thuật ngữ ngành</em> &amp; vài câu trả lời mẫu để nói trôi chảy.</p>
 
   <h3 class="reveal">Glossary EN ⇄ VN — gõ để lọc</h3>
@@ -781,8 +818,7 @@ mark{background:#fde9a8;color:var(--ink);border-radius:3px;padding:0 2px}
 
 <!-- ============ 11 INTERVIEW ============ -->
 <section id="interview" data-track class="sec-pad"><div class="wrap">
-  <div class="eyebrow reveal"><span class="dot"></span>11 — Luyện phỏng vấn</div>
-  <h2 class="title reveal">Ngân hàng câu hỏi &amp; cách trả lời.</h2>
+  <h2 class="title reveal">11 — Luyện phỏng vấn (Ngân hàng câu hỏi)</h2>
   <p class="lead reveal">Phân theo nhóm. Câu hành vi dùng khung <strong>STAR</strong> (Tình huống – Nhiệm vụ – Hành động – Kết quả).</p>
 
   <div class="grid2 reveal gap">
@@ -828,8 +864,7 @@ mark{background:#fde9a8;color:var(--ink);border-radius:3px;padding:0 2px}
 
 <!-- ============ FLASHCARDS ============ -->
 <section id="flash" class="sec-pad"><div class="wrap">
-  <div class="eyebrow reveal"><span class="dot"></span>Ôn nhanh · Flashcards</div>
-  <h2 class="title reveal">Lật thẻ, kiểm tra trí nhớ.</h2>
+  <h2 class="title reveal">Ôn nhanh · Flashcards</h2>
   <p class="lead reveal">Bấm vào thẻ để lật. Ôn 10 phút mỗi ngày là đủ ngấm.</p>
   <div class="fc reveal" id="fc"><div class="fc-in">
     <div class="fc-f"><div class="q" id="fcQ"></div><div class="hint">↻ Bấm để xem đáp án</div></div>
@@ -844,8 +879,7 @@ mark{background:#fde9a8;color:var(--ink);border-radius:3px;padding:0 2px}
 
 <!-- ============ QUIZ ============ -->
 <section id="quiz" class="sec-pad"><div class="wrap">
-  <div class="eyebrow reveal"><span class="dot"></span>Tự kiểm tra · Quiz</div>
-  <h2 class="title reveal">10 câu đo mức sẵn sàng.</h2>
+  <h2 class="title reveal">Tự kiểm tra · Quiz</h2>
   <p class="lead reveal">Chọn đáp án để xem ngay đúng/sai &amp; giải thích.</p>
   <div class="quiz" id="quizBox"></div>
   <div class="score" id="score"></div>
@@ -1028,6 +1062,51 @@ qBox.addEventListener("click",function(e){var l=e.target.closest(".opt");if(!l)r
   scoreEl.textContent="Điểm: "+sc+"/"+QUIZ.length+" — "+msg;scoreEl.style.display="block";
   scoreEl.scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"})}});
 document.getElementById("quizReset").onclick=buildQuiz;buildQuiz();
+
+/* ===== COLLAPSE / EXPAND SECTIONS ===== */
+document.querySelectorAll('section.sec-pad').forEach(function(sec) {
+  var title = sec.querySelector('h2.title');
+  var wrap = sec.querySelector('.wrap');
+  if(!title || !wrap) return;
+
+  title.style.display = 'flex';
+  title.style.justifyContent = 'space-between';
+  title.style.alignItems = 'center';
+  title.style.flexWrap = 'wrap';
+  title.style.gap = '10px';
+
+  var btn = document.createElement('button');
+  btn.className = 'sec-toggle';
+  btn.innerHTML = '▼ Thu gọn';
+  title.appendChild(btn);
+
+  var content = document.createElement('div');
+  content.className = 'sec-content';
+  
+  var sibling = title.nextElementSibling;
+  while(sibling) {
+      var next = sibling.nextElementSibling;
+      content.appendChild(sibling);
+      sibling = next;
+  }
+  wrap.appendChild(content);
+
+  btn.onclick = function() {
+      var isHidden = content.style.display === 'none';
+      if (isHidden) {
+          content.style.display = 'block';
+          btn.innerHTML = '▼ Thu gọn';
+          btn.style.background = 'var(--bg2)';
+          btn.style.color = 'var(--green-d)';
+      } else {
+          content.style.display = 'none';
+          btn.innerHTML = '▶ Mở rộng';
+          btn.style.background = 'var(--grad)';
+          btn.style.color = '#fff';
+      }
+  };
+});
+
 })();
 </script>
 </body>

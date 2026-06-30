@@ -13,8 +13,8 @@ export default async function handler(req, res) {
         const userMessage = req.body.message;
         const systemPrompt = "Bạn là chuyên gia Logistics tại BSR (Lọc hóa dầu Bình Sơn). Hãy trả lời ngắn gọn, súc tích, chuyên nghiệp các câu hỏi về logistics, thuê tàu, giá dầu, Incoterms. Nếu không biết thì nói không biết.";
         
-        // Đoạn này ĐẢM BẢO là gemini-1.5-flash
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+        // ĐÃ ĐỔI SANG MODEL CƠ BẢN NHẤT CỦA GOOGLE ĐỂ TRÁNH LỖI NOT FOUND
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

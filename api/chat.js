@@ -13,7 +13,7 @@ export default async function handler(req, res) {
         const userMessage = req.body.message;
         const systemPrompt = "Bạn là chuyên gia Logistics tại BSR (Lọc hóa dầu Bình Sơn). Hãy trả lời ngắn gọn, súc tích, chuyên nghiệp các câu hỏi về logistics, thuê tàu, giá dầu, Incoterms. Nếu không biết thì nói không biết.";
         
-        // Đã sửa thành gemini-1.5-flash (Model chuẩn cho API mới)
+        // Đoạn này ĐẢM BẢO là gemini-1.5-flash
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

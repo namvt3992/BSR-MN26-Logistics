@@ -11,9 +11,10 @@ export default async function handler(req, res) {
 
     try {
         const userMessage = req.body.message;
-        const systemPrompt = "Bạn là chuyên gia Logistics tại BSR (Lọc hóa dầu Bình Sơn). Hãy trả lời ngắn gọn, súc tích.";
+        const systemPrompt = "Bạn là chuyên gia Logistics tại BSR (Lọc hóa dầu Bình Sơn). Hãy trả lời ngắn gọn, súc tích, chuyên nghiệp các câu hỏi về logistics, thuê tàu, giá dầu, Incoterms. Nếu không biết thì nói không biết.";
         
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+        // Đã đổi gemini-1.5-flash thành gemini-pro
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -23,7 +24,6 @@ export default async function handler(req, res) {
 
         const data = await response.json();
 
-        // NẾU GOOGLE BÁO LỖI, IN RA LỖI ĐÓ
         if (!response.ok) {
             console.error("Lỗi từ Google:", data);
             return res.status(500).json({ 

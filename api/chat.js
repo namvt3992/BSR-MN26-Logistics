@@ -3,7 +3,6 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    // Lấy API Key từ Vercel Environment Variables
     const apiKey = process.env.GEMINI_API_KEY;
     
     if (!apiKey) {
@@ -12,9 +11,7 @@ export default async function handler(req, res) {
 
     try {
         const userMessage = req.body.message;
-
-        // Bối cảnh để AI trả lời đúng trọng tâm Logistics BSR
-        const systemPrompt = "Bạn là chuyên gia Logistics tại BSR (Lọc hóa dầu Bình Sơn). Hãy trả lời ngắn gọn, súc tích, chuyên nghiệp các câu hỏi về logistics, thuê tàu, giá dầu, Incoterms. Nếu không biết thì nói không biết.";
+        const systemPrompt = "Bạn là chuyên gia Logistics tại BSR (Lọc hóa dầu Bình Sơn). Hãy trả lời ngắn gọn, súc tích.";
         
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
             method: 'POST',
@@ -25,11 +22,20 @@ export default async function handler(req, res) {
         });
 
         const data = await response.json();
-        const aiText = data.candidates[0].content.parts[0].text;
 
+        // NẾU GOOGLE BÁO LỖI, IN RA LỖI ĐÓ
+        if (!response.ok) {
+            console.error("Lỗi từ Google:", data);
+            return res.status(500).json({ 
+                error: `Google báo lỗi: ${data.error?.message || response.statusText}` 
+            });
+        }
+
+        const aiText = data.candidates[0].content.parts[0].text;
         return res.status(200).json({ reply: aiText });
+
     } catch (error) {
         console.error("AI Error:", error);
-        return res.status(500).json({ error: 'Lỗi khi gọi AI' });
+        return res.status(500).json({ error: error.message || 'Lỗi hệ thống khi gọi AI' });
     }
 }

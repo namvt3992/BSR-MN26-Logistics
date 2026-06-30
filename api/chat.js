@@ -3,6 +3,7 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
+    // Lấy API Key từ Vercel
     const apiKey = process.env.GEMINI_API_KEY;
     
     if (!apiKey) {
@@ -11,9 +12,11 @@ export default async function handler(req, res) {
 
     try {
         const userMessage = req.body.message;
+        
+        // Cài đặt vai trò cho AI
         const systemPrompt = "Bạn là chuyên gia Logistics tại BSR (Lọc hóa dầu Bình Sơn). Hãy trả lời ngắn gọn, súc tích, chuyên nghiệp các câu hỏi về logistics, thuê tàu, giá dầu, Incoterms. Nếu không biết thì nói không biết.";
         
-        // ĐÃ ĐỔI SANG MODEL CƠ BẢN NHẤT CỦA GOOGLE ĐỂ TRÁNH LỖI NOT FOUND
+        // Gọi lên Google Gemini (Đã dùng gemini-1.5-flash-latest)
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -24,6 +27,7 @@ export default async function handler(req, res) {
 
         const data = await response.json();
 
+        // Nếu Google từ chối trả lời (do sai key, sai model, cấm tài khoản...) -> Báo lỗi chi tiết
         if (!response.ok) {
             console.error("Lỗi từ Google:", data);
             return res.status(500).json({ 
@@ -31,6 +35,7 @@ export default async function handler(req, res) {
             });
         }
 
+        // Nếu thành công -> Trả kết quả về cho web
         const aiText = data.candidates[0].content.parts[0].text;
         return res.status(200).json({ reply: aiText });
 
